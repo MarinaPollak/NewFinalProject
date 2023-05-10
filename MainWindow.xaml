@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:NewFinalProject"
         mc:Ignorable="d"
-        Title="MainWindow" Height="485" Width="800" MouseMove="Window_MouseMove" MouseDown="Window_MouseDown">
+        Title="CityBuilder" Height="495" Width="800" MouseMove="Window_MouseMove" MouseDown="Window_MouseDown">
     <Window.Resources>
         <Color x:Key="GradientStopColor1">#FF146B94</Color>
     </Window.Resources>
     <Grid>
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
@@ -37,11 +38,12 @@
         </Rectangle>
 
         <!-- Player name -->
-        <StackPanel Orientation="Vertical">
+        <StackPanel x:Name="PlayerName"  Orientation="Vertical" MouseEnter="PlayerName_MouseEnter">
+
             <TextBlock Text="Player Name" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Separator/>
 
-            <TextBlock x:Name="playerNameTxt" Text="Marina" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 3"/>
+            <TextBlock x:Name="playerNameTxt" Text="Enter" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 3"/>
         </StackPanel>
 
 
@@ -62,46 +64,41 @@
             <TextBlock x:Name="scoreTxt" Text="0 points" Foreground="White" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0, 3"/>
         </StackPanel>
 
-        <Button x:Name="toggleBuildMenueBtn" Content="Show Build Menu" Grid.Column="3" Margin="10" Click="toggleBuildMenueBtn_Click"/>
+        <Button x:Name="toggleBuildMenueBtn" Content="Show Build Menu" Grid.Column="3" Margin="10" Click="toggleBuildMenueBtn_Click" Background="#FF971D79" Foreground="#FFFFF2F2" BorderBrush="#FFCFBCBC"/>
 
+        <!--Enter Player Info-->
+        <Border CornerRadius="20,20,120,20" BorderBrush="#FF645C5C" Grid.Row="1" Grid.Column="0" Panel.ZIndex="9999">
+            <StackPanel x:Name="Canvas" Grid.Row="1" Grid.Column="0" Background="#FF105576" Visibility="Collapsed"  Margin="10" OpacityMask="Red" Opacity="0.7" >
+
+            <TextBox x:Name="InputBox"  TextWrapping="Wrap"  Width="100" HorizontalAlignment="Left" VerticalAlignment="Center" KeyDown="InputBox_KeyDown"  Grid.Row="1" Margin="10"/>
+            <Button x:Name="PlayerInputSubmitButton" Content="Submit"  VerticalAlignment="Center" Width="60" Click="PlayerInputSubmitButton_Click"  Grid.Row="2" Background="#FF971D79" BorderBrush="#FFCFBCBC" Foreground="#FFF8F5F5"/>
+        </StackPanel>
+            </Border>
 
         <!-- Create section for purchased transportations-->
-        <ScrollViewer Grid.Row="2" Grid.RowSpan="4" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Row="1" Grid.RowSpan="4" VerticalScrollBarVisibility="Auto" Panel.ZIndex="888">
             <StackPanel x:Name="transportationImages" Orientation="Vertical">
 
             </StackPanel>
         </ScrollViewer>
 
         <!-- Create section for purchased restaurants-->
-        <ScrollViewer Grid.Column="1" Grid.Row="2" Grid.RowSpan="4" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Column="1" Grid.Row="1" Grid.RowSpan="4" VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="resturantImages" Orientation="Vertical">
 
             </StackPanel>
         </ScrollViewer>
 
         <!-- Create section for purchased entertainments-->
-        <ScrollViewer Grid.Column="2" Grid.Row="2" Grid.RowSpan="4" VerticalScrollBarVisibility="Auto">
+        <ScrollViewer Grid.Column="2" Grid.Row="1" Grid.RowSpan="4" VerticalScrollBarVisibility="Auto">
             <StackPanel x:Name="entertainmentImages" Orientation="Vertical">
 
             </StackPanel>
         </ScrollViewer>
 
         <!--Greeting Box-->
-        
-        <TextBlock x:Name="GreetText" Text="" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2" Background="#FF404040" Visibility="Collapsed" Width="250" Height="110" Margin="-1,0,0,0" Padding="20,20,20,20" FontSize="25" FontFamily="Gabriola" Foreground="#FFF6E9E9" TextWrapping="Wrap" TextAlignment="Center">
-            <TextBlock.TextEffects>
-                <TextEffect>
-                    <TextEffect.Foreground>
-                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                            <GradientStop Color="#FFD30E0E"/>
-                            <GradientStop Color="#FFA74747" Offset="1"/>
-                        </LinearGradientBrush>
-                    </TextEffect.Foreground>
-                </TextEffect>
-            </TextBlock.TextEffects>
-            <TextBlock.Effect>
-                <DropShadowEffect/>
-            </TextBlock.Effect></TextBlock>
+
+        <TextBlock x:Name="GreetText" Text="" Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="2" Grid.RowSpan="2"  Visibility="Collapsed" Width="250" Height="110" Margin="-1,0,0,0" Padding="20,20,20,20" FontSize="25" FontFamily="Gabriola" Foreground="#FF002A38" TextWrapping="Wrap" TextAlignment="Center"/>
 
         <!-- Purchase Buildings -->
         <Grid x:Name="purchaseBuildingsGrid" Grid.Column="3" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="4" Background="#FF002A38">
@@ -123,7 +120,7 @@
             <StackPanel Orientation="Vertical" Grid.ColumnSpan="5" Grid.RowSpan="5">
                 <TextBlock x:Name="buildingTypeTxt" Text="Transportaions" Foreground="White" HorizontalAlignment="Center" FontSize="18"></TextBlock>
 
-                <ListBox x:Name="buildMenuLstBx" Height="180" Margin="15,10,15,0" SelectionChanged="buildMenuLstBx_SelectionChanged">
+                <ListBox x:Name="buildMenuLstBx" Height="180" Margin="15,10,15,0" SelectionChanged="buildMenuLstBx_SelectionChanged" BorderBrush="#FFCFBCBC">
 
                 </ListBox>
 
@@ -151,12 +148,12 @@
                 </Grid>
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10">
-                    <Button x:Name="previousBuildingTypeBtn" Content="Previous" HorizontalAlignment="Left" Width="75" Click="previousBuildingTypeBtn_Click" MouseEnter="previousBuildingTypeBtn_MouseEnter" MouseLeave="previousBuildingTypeBtn_MouseLeave">
+                    <Button x:Name="previousBuildingTypeBtn" Content="Previous" HorizontalAlignment="Left" Width="75" Click="previousBuildingTypeBtn_Click" MouseEnter="previousBuildingTypeBtn_MouseEnter" MouseLeave="previousBuildingTypeBtn_MouseLeave" Background="#FF971D79" Foreground="#FFFCF7F7" BorderBrush="#FFCFBCBC">
                     </Button>
 
-                    <Button x:Name="buyBuildingBtn" Content="Purchase" HorizontalAlignment="Left" Width="75" Height="25" Click="buyBuildingBtn_Click" Margin="25,0" MouseEnter="buyBuildingBtn_MouseEnter" MouseLeave="buyBuildingBtn_MouseLeave"></Button>
+                    <Button x:Name="buyBuildingBtn" Content="Purchase" HorizontalAlignment="Left" Width="75" Height="25" Click="buyBuildingBtn_Click" Margin="25,0" MouseEnter="buyBuildingBtn_MouseEnter" MouseLeave="buyBuildingBtn_MouseLeave" Foreground="#FFFCF7FB" Background="#FF971D79" BorderBrush="#FFCFBCBC"></Button>
 
-                    <Button x:Name="nextBuildingTypeBtn" Content="Next" HorizontalAlignment="Right" Width="75"  Click="nextBuildingTypeBtn_Click" MouseEnter="nextBuildingTypeBtn_MouseEnter" MouseLeave="nextBuildingTypeBtn_MouseLeave"></Button>
+                    <Button x:Name="nextBuildingTypeBtn" Content="Next" HorizontalAlignment="Right" Width="75"  Click="nextBuildingTypeBtn_Click" MouseEnter="nextBuildingTypeBtn_MouseEnter" MouseLeave="nextBuildingTypeBtn_MouseLeave" Background="#FF971D79" Foreground="#FFFBF9F9" BorderBrush="#FFCFBCBC"/>
                 </StackPanel>
             </StackPanel>
         </Grid>

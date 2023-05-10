@@ -3,6 +3,7 @@ using System.Media;
 using System.Timers;  //tutor Thomas Maggraff https://github.com/gurrenm3
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
 /* 
@@ -304,6 +305,27 @@ namespace NewFinalProject
             player.Play();
         }
 
+        private void PlayerInputSubmitButton_Click(object sender, RoutedEventArgs e)
+        {
+            //publish the name of the palyer into the HUD
+            playerNameTxt.Text = InputBox.Text;
 
+            //hide the setup canvas
+            Canvas.Visibility = Visibility.Collapsed;
+        }
+
+        private void InputBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            //pass through the input parametr from the key down event handler
+            if (e.Key == Key.Return)
+            {
+                PlayerInputSubmitButton_Click(sender, e);
+            }
+        }
+
+        private void PlayerName_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Canvas.Visibility = Visibility.Visible;
+        }
     }
 }
