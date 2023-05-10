@@ -3,5 +3,9 @@
     public class Transportation : Building
     {
 
+        public Transportation()
+        {
+        }
+
     }
 }
