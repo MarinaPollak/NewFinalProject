@@ -1,9 +1,18 @@
 ﻿using NewFinalProject.Classes;
 using System.Media;
-using System.Timers;
+using System.Timers;  //tutor Thomas Maggraff https://github.com/gurrenm3
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+
+/* 
+[CityBuilder] 
+[C# WPF Game] 
+[Marina Pollak]
+[05/09/2022] 
+tutor Thomas Maggraff https://github.com/gurrenm3
+*/
+
 
 
 namespace NewFinalProject
@@ -31,6 +40,7 @@ namespace NewFinalProject
             SetCurrentBuildingType(0); //Set current building type to 0
             // on this line
 
+            ///tutor Thomas Maggraff https://github.com/gurrenm3
             giveMoneyTimer = new Timer(6_000);
             giveMoneyTimer.Elapsed += GiveMoneyTimer_Elapsed;
             giveMoneyTimer.Start();
@@ -66,7 +76,7 @@ namespace NewFinalProject
         }
 
 
-
+        //tutor Thomas Maggraff https://github.com/gurrenm3
         private void GiveMoneyTimer_Elapsed(object sender, ElapsedEventArgs e)
         {
             int cashToAdd = player.score.GetCurrentAmount() * 10;
@@ -280,11 +290,13 @@ namespace NewFinalProject
             buyBuildingBtn.Margin = new Thickness(25, 0, 25, 0);
         }
 
+        //Advanced Feature for Timer issue
         private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
 
         }
 
+        //tutor Thomas Maggraff https://github.com/gurrenm3
         private void PlayClickSound()
         {
             SoundPlayer player = new SoundPlayer("Sound\\Click.wav");

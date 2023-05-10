@@ -160,6 +160,5 @@
                 </StackPanel>
             </StackPanel>
         </Grid>
-        <TextBox x:Name="TypeBox" TextWrapping="Wrap" Text="TextBox" Width="220" Grid.Column="1" Grid.Row="1" Grid.RowSpan="1" HorizontalAlignment="Center" Panel.ZIndex="9999" Background="Red"  Foreground="White" TextChanged="TypeBox_TextChanged"/>
     </Grid>
 </Window>
